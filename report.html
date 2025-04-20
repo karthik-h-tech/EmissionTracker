@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Emission Reports</title>
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <h1>Emission Reports</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="country-graph.html">Country Graph</a></li>
+          <li><a href="prediction.html">AI Prediction</a></li>
+          <li><a href="report.html">Emission Reports</a></li>
+          <li><a href="news.html">Latest News</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="profile-container">
+      <button onclick="window.location.href='profile.html'">
+        <i class="material-icons">account_circle</i> Profile
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="intro-section">
+      <h2>Search Emission Reports</h2>
+      <p>Fill in the fields below to search for emission reports based on your selected criteria.</p>
+    </section>
+
+    <!-- Report Search Form -->
+    <section class="search-section">
+      <h3><i class="material-icons">search</i> Search for Reports</h3>
+      <form id="report-form" onsubmit="return false;">
+        <div class="form-field">
+          <label for="region">Region:</label>
+          <input type="text" id="region" placeholder="Enter Region" required>
+        </div>
+        <div class="form-field">
+          <label for="gas-type">Gas Type:</label>
+          <select id="gas-type" required>
+            <option value="co2">CO₂</option>
+            <option value="methane">Methane</option>
+            <option value="nitrous-oxide">Nitrous Oxide</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label for="start-date">Start Date:</label>
+          <input type="date" id="start-date" required>
+        </div>
+        <div class="form-field">
+          <label for="end-date">End Date:</label>
+          <input type="date" id="end-date" required>
+        </div>
+        <button type="submit" onclick="searchReports()">Search</button>
+      </form>
+    </section>
+
+    <!-- Display Search Results -->
+    <section id="report-results" class="region-data">
+      <h3><i class="material-icons">insert_chart</i> Report Results</h3>
+      <div id="results-container">
+        <!-- Filtered report results will appear here -->
+        <div class="loading-spinner">
+          <i class="material-icons">hourglass_empty</i> Loading...
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2024 Greenhouse Gas Emission Monitoring System</p>
+  </footer>
+
+  <script>
+    function searchReports() {
+      // Get input values
+      const region = document.getElementById("region").value;
+      const gasType = document.getElementById("gas-type").value;
+      const startDate = document.getElementById("start-date").value;
+      const endDate = document.getElementById("end-date").value;
+
+      // Show loading spinner
+      document.querySelector(".loading-spinner").style.display = "block";
+
+      // Simulate fetching data (In real implementation, this data would be fetched from the backend)
+      const reportData = [
+        {
+          region: "California",
+          gasType: "CO₂",
+          date: "2024-01-15",
+          emissionLevel: "430 ppm"
+        },
+        {
+          region: "California",
+          gasType: "Methane",
+          date: "2024-02-01",
+          emissionLevel: "280 ppm"
+        },
+        {
+          region: "New York",
+          gasType: "CO₂",
+          date: "2024-03-10",
+          emissionLevel: "490 ppm"
+        }
+      ];
+
+      // Filter reports based on search criteria
+      const filteredReports = reportData.filter(report => {
+        return (
+          report.region.toLowerCase().includes(region.toLowerCase()) &&
+          report.gasType.toLowerCase() === gasType.toLowerCase() &&
+          report.date >= startDate &&
+          report.date <= endDate
+        );
+      });
+
+      // Hide loading spinner
+      document.querySelector(".loading-spinner").style.display = "none";
+
+      // Display results
+      const resultsContainer = document.getElementById("results-container");
+      resultsContainer.innerHTML = ""; // Clear previous results
+
+      if (filteredReports.length > 0) {
+        filteredReports.forEach(report => {
+          const reportCard = document.createElement("div");
+          reportCard.classList.add("report-card");
+          reportCard.innerHTML = `
+            <div class="card-header">
+              <strong>${report.region} - ${report.gasType}</strong>
+              <span>${report.date}</span>
+            </div>
+            <div class="card-body">
+              <p><strong>Emission Level:</strong> ${report.emissionLevel}</p>
+            </div>
+          `;
+          resultsContainer.appendChild(reportCard);
+        });
+      } else {
+        resultsContainer.innerHTML = "<p>No reports found matching the criteria.</p>";
+      }
+    }
+  </script>
+
+  <style>
+    /* Improved styling for the form and results */
+    .form-field {
+      margin-bottom: 15px;
+    }
+
+    .form-field label {
+      font-weight: bold;
+    }
+
+    .form-field input,
+    .form-field select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      font-size: 16px;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+
+    .report-card {
+      background-color: #f9f9f9;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .card-body p {
+      font-size: 14px;
+    }
+
+    .loading-spinner {
+      text-align: center;
+      font-size: 18px;
+      display: none;
+    }
+  </style>
+</body>
+
+</html>

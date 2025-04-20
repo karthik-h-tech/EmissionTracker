@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Country Gas Emission Graph</title>
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Chart.js for Graph -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <h1>Country Gas Emission Graph</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="country-graph.html">Country Graph</a></li>
+          <li><a href="prediction.html">AI Prediction</a></li>
+          <li><a href="report.html">Emission Reports</a></li>
+          <li><a href="news.html">Latest News</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="profile-container">
+      <button onclick="window.location.href='profile.html'">
+        <i class="material-icons">account_circle</i> Profile
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="graph-section">
+      <h2>Select Gas to View Emission Levels</h2>
+      
+      <!-- Dropdown for selecting gas -->
+      <div class="dropdown-container">
+        <label for="gasSelect">Choose a Gas:</label>
+        <select id="gasSelect">
+          <option value="co2">CO₂</option>
+          <option value="methane">Methane</option>
+          <option value="nitrousOxide">Nitrous Oxide</option>
+          <option value="ozone">Ozone</option>
+        </select>
+      </div>
+
+      <!-- Graph Canvas -->
+      <div class="graph-container">
+        <canvas id="gasGraph"></canvas>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2024 Greenhouse Gas Emission Monitoring System</p>
+  </footer>
+
+  <!-- Script for Chart.js and dropdown functionality -->
+  <script>
+    const graphData = {
+      co2: [400, 420, 430, 445, 460, 480],
+      methane: [10, 12, 13, 14, 15, 16],
+      nitrousOxide: [0.8, 0.9, 1.0, 1.1, 1.2, 1.3],
+      ozone: [25, 27, 28, 30, 33, 35],
+    };
+
+    const ctx = document.getElementById('gasGraph').getContext('2d');
+    const gasGraph = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+        datasets: [{
+          label: 'CO₂ Emissions',
+          data: graphData.co2,
+          borderColor: 'rgba(255, 99, 132, 1)',
+          fill: false,
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+            title: {
+              display: true,
+              text: 'Emission Levels (ppm)'
+            }
+          },
+          x: {
+            title: {
+              display: true,
+              text: 'Months'
+            }
+          }
+        }
+      }
+    });
+
+    document.getElementById('gasSelect').addEventListener('change', function () {
+      const selectedGas = this.value;
+      gasGraph.data.datasets[0].data = graphData[selectedGas];
+      gasGraph.data.datasets[0].label = 
+        selectedGas === 'co2' ? 'CO₂ Emissions' :
+        selectedGas === 'methane' ? 'Methane Emissions' :
+        selectedGas === 'nitrousOxide' ? 'Nitrous Oxide Emissions' :
+        'Ozone Emissions';
+      gasGraph.update();
+    });
+  </script>
+</body>
+</html>

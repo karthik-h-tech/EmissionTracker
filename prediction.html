@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Prediction - Greenhouse Gas Monitoring</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-container prediction-header" style="text-align: center; padding-left: 0;">
+      <h1>AI Prediction</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="country-graph.html">Country Graph</a></li>
+          <li><a href="prediction.html">AI Prediction</a></li>
+          <!-- Emission Reports link correctly navigates to reports.html -->
+          <li><a href="report.html">Emission Reports</a></li> 
+          <li><a href="news.html">Latest News</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="profile-container">
+      <button onclick="window.location.href='profile.html'">
+        <i class="material-icons">account_circle</i> Profile
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="intro-section">
+      <h2>AI-Based Emission Predictions</h2>
+      <p>Use AI to predict greenhouse gas emissions in various regions and track future trends.</p>
+    </section>
+
+    <!-- Prediction Form -->
+    <section class="feature">
+      <h3>Enter Data for AI Prediction</h3>
+      <form id="prediction-form">
+        <label for="region">Select Region</label>
+        <select id="region" required>
+          <option value="">--Select Region--</option>
+          <option value="us">USA</option>
+          <option value="india">India</option>
+          <option value="china">China</option>
+          <option value="eu">Europe</option>
+          <option value="global">Global</option>
+        </select>
+
+        <label for="gas">Select Gas</label>
+        <select id="gas" required>
+          <option value="">--Select Gas--</option>
+          <option value="co2">CO₂</option>
+          <option value="methane">Methane</option>
+          <option value="nitrous">Nitrous Oxide</option>
+        </select>
+        
+        <button type="submit">Predict Emission</button>
+      </form>
+    </section>
+
+    <!-- Loading and Result Display -->
+    <section id="loading-section" class="feature" style="display: none;">
+      <h3>Predicting...</h3>
+      <div class="spinner"></div>
+    </section>
+
+    <section id="prediction-result" class="feature" style="display: none;">
+      <h3>Predicted CO₂ Emissions</h3>
+      <p id="prediction-text"></p>
+    </section>
+
+    <!-- Tips to Reduce Emissions -->
+    <section id="tips-section" class="feature" style="display: none;">
+      <h3>Tips to Reduce Emissions</h3>
+      <p id="tips-text"></p>
+    </section>
+
+    <!-- Error Message -->
+    <section id="error-message" class="feature" style="display: none;">
+      <h3>Error</h3>
+      <p>Something went wrong. Please try again.</p>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2024 Greenhouse Gas Emission Monitoring System</p>
+  </footer>
+
+  <script>
+    // Simulate AI Prediction
+    document.getElementById("prediction-form").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      // Hide previous sections
+      document.getElementById("prediction-result").style.display = "none";
+      document.getElementById("error-message").style.display = "none";
+      document.getElementById("tips-section").style.display = "none";
+
+      // Show loading spinner
+      document.getElementById("loading-section").style.display = "block";
+
+      // Simulate delay of AI processing (2 seconds)
+      setTimeout(function() {
+        const region = document.getElementById("region").value;
+        const gas = document.getElementById("gas").value;
+
+        // Hide loading spinner
+        document.getElementById("loading-section").style.display = "none";
+
+        if (region && gas) {
+          // Simulated predictions with randomness
+          let prediction = "";
+          let tips = "";
+
+          // Set baseline emissions values for each region and gas type
+          let baselineEmissions = {
+            us: { co2: 470, methane: 1900, nitrous: 320 },
+            india: { co2: 455, methane: 1700, nitrous: 310 },
+            china: { co2: 480, methane: 2000, nitrous: 330 },
+            eu: { co2: 450, methane: 1800, nitrous: 300 },
+            global: { co2: 460, methane: 1850, nitrous: 310 }
+          };
+
+          // Randomize emissions by adding some variability (±5%)
+          let emissionValue = baselineEmissions[region][gas];
+          let predictedEmission = emissionValue * (1 + (Math.random() * 0.1 - 0.05)); // ±5%
+
+          // Format result text
+          prediction = `${region.toUpperCase()}: Predicted ${gas.toUpperCase()} Emissions for 2025: ${(predictedEmission).toFixed(2)} ppm`;
+
+          // Dynamic tips based on the gas
+          if (gas === "co2") {
+            tips = "To reduce CO₂ emissions, consider transitioning to renewable energy, enhancing public transportation, and improving energy efficiency.";
+          } else if (gas === "methane") {
+            tips = "To reduce methane emissions, focus on waste management, enhancing natural gas infrastructure, and promoting sustainable agriculture.";
+          } else {
+            tips = "To reduce nitrous oxide emissions, optimize fertilizer application, reduce tillage, and enhance the nitrogen cycle in agriculture.";
+          }
+
+          // Show result and tips
+          document.getElementById("prediction-text").textContent = prediction;
+          document.getElementById("tips-text").textContent = tips;
+
+          document.getElementById("prediction-result").style.display = "block";
+          document.getElementById("tips-section").style.display = "block";
+        } else {
+          // Show error if no region or gas selected
+          document.getElementById("error-message").style.display = "block";
+        }
+      }, 2000); // Simulate processing delay
+    });
+  </script>
+</body>
+</html>

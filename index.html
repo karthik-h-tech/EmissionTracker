@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Greenhouse Gas Emission Monitoring</title>
+  <!-- Material Icons -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!-- Font Awesome Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+  <!-- HEADER -->
+  <header>
+    <div class="header-container">
+      <h1>Greenhouse Gas Emission Monitoring</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="country-graph.html">Country Graph</a></li>
+          <li><a href="prediction.html">AI Prediction</a></li>
+          <!-- Emission Reports link correctly navigates to reports.html -->
+          <li><a href="report.html">Emission Reports</a></li> 
+          <li><a href="news.html">Latest News</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="profile-container">
+      <button onclick="window.location.href='profile.html'">
+        <i class="material-icons">account_circle</i> Profile
+      </button>
+    </div>
+  </header>
+
+  <!-- MAIN CONTENT -->
+  <main>
+    <section class="intro-section">
+      <h2>Welcome to the Emission Monitoring Platform</h2>
+      <p>Track and understand greenhouse gas emissions, explore live data, and stay informed with news and alerts.</p>
+    </section>
+
+    <!-- Live Gas Emissions -->
+    <section class="feature">
+      <h3><i class="material-icons">dashboard</i> Live Gas Emission Data</h3>
+      <div class="live-data">
+        <p>Current CO₂ Emissions in Your Region: <strong>450 ppm</strong></p>
+        <!-- Button now correctly navigates to 'regional-gas.html' -->
+        <button onclick="window.location.href='regional_gas.html'">View Regional Data</button>
+      </div>
+    </section>
+
+    <!-- Compare Emissions -->
+    <section class="feature">
+      <h3><i class="material-icons">compare_arrows</i> Compare Emissions</h3>
+      <p>Compare emission levels between regions.</p>
+      <button onclick="window.location.href='compare.html'">Start Comparison</button>
+    </section>
+
+    <!-- Historical Data -->
+    <section class="feature">
+      <h3><i class="material-icons">timeline</i> Explore Historical Gas Emission Trends</h3>
+      <p>Analyze emissions over different time periods.</p>
+      <button onclick="window.location.href='historical.html'">View Historical Data</button>
+    </section>
+
+    <!-- Set Alerts -->
+    <section class="feature">
+      <h3><i class="material-icons">notifications</i> Set Emission Alerts</h3>
+      <p>Get notifications when emissions exceed your specified threshold.</p>
+      <button onclick="window.location.href='alerts.html'">Set Alert</button>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>&copy; 2024 Greenhouse Gas Emission Monitoring System</p>
+  </footer>
+</body>
+
+</html>

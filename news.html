@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Environmental News</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <h1 style="text-align: left; margin: 0; color: white;">Environmental News</h1>
+      <nav>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="country-graph.html">Country Graph</a></li>
+          <li><a href="prediction.html">AI Prediction</a></li>
+          <li><a href="report.html">Emission Reports</a></li> 
+          <li><a href="news.html">Latest News</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="profile-container">
+      <button onclick="window.location.href='profile.html'">
+        <i class="material-icons">account_circle</i> Profile
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="news-section">
+      <h2>Latest Environmental News</h2>
+
+      <!-- Country Selector -->
+      <div class="country-selector">
+        <label for="country">Select Country: </label>
+        <select id="country" onchange="filterNewsByCountry()">
+          <option value="all">All Countries</option>
+          <option value="india">India</option>
+          <option value="us">United States</option>
+          <option value="china">China</option>
+          <option value="brazil">Brazil</option>
+        </select>
+      </div>
+
+      <!-- News List -->
+      <div id="newsList">
+        <!-- India News Items -->
+        <div class="news-item-container india">
+          <div class="news-item">
+            <a href="#">
+              <h3>Climate change policies in India tighten</h3>
+              <p>A new set of policies in India aims to reduce carbon emissions, including stricter regulations on industries.</p>
+            </a>
+          </div>
+        </div>
+        <div class="news-item-container india">
+          <div class="news-item">
+            <a href="#">
+              <h3>India to phase out coal plants by 2030</h3>
+              <p>India plans to reduce its reliance on coal power, with a target to phase out coal plants by 2030.</p>
+            </a>
+          </div>
+        </div>
+        <div class="news-item-container india">
+          <div class="news-item">
+            <a href="#">
+              <h3>India launches Green Energy Mission</h3>
+              <p>The Indian government announced a mission to promote renewable energy adoption nationwide.</p>
+            </a>
+          </div>
+        </div>
+        <div class="news-item-container india">
+          <div class="news-item">
+            <a href="#">
+              <h3>Plastic ban extended to rural India</h3>
+              <p>India expands its single-use plastic ban to include villages and small towns.</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- US News Items -->
+        <div class="news-item-container us">
+          <div class="news-item">
+            <a href="#">
+              <h3>UN reports rise in methane emissions globally</h3>
+              <p>The UN's latest report shows a concerning rise in methane emissions, mainly driven by industrial sectors.</p>
+            </a>
+          </div>
+        </div>
+        <div class="news-item-container us">
+          <div class="news-item">
+            <a href="#">
+              <h3>California invests in wildfire prevention</h3>
+              <p>California announces new funding for wildfire mitigation and forest restoration programs.</p>
+            </a>
+          </div>
+        </div>
+        <div class="news-item-container us">
+          <div class="news-item">
+            <a href="#">
+              <h3>New US climate bill focuses on EV subsidies</h3>
+              <p>The U.S. Senate passes a bill offering tax incentives for electric vehicle buyers.</p>
+            </a>
+          </div>
+        </div>
+        <div class="news-item-container us">
+          <div class="news-item">
+            <a href="#">
+              <h3>EPA updates industrial emission standards</h3>
+              <p>The Environmental Protection Agency tightens air quality regulations on power plants.</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- China News Items -->
+        <div class="news-item-container china">
+          <div class="news-item">
+            <a href="#">
+              <h3>China boosts solar panel production</h3>
+              <p>China accelerates its green energy efforts by expanding solar panel manufacturing.</p>
+            </a>
+          </div>
+        </div>
+        <div class="news-item-container china">
+          <div class="news-item">
+            <a href="#">
+              <h3>Beijing sees reduction in air pollution</h3>
+              <p>Recent data shows a significant drop in air pollutants across Beijing city.</p>
+            </a>
+          </div>
+        </div>
+        <div class="news-item-container china">
+          <div class="news-item">
+            <a href="#">
+              <h3>China introduces electric cargo trucks</h3>
+              <p>Electric trucks begin operation in major logistics centers across China.</p>
+            </a>
+          </div>
+        </div>
+        <div class="news-item-container china">
+          <div class="news-item">
+            <a href="#">
+              <h3>Yangtze River conservation program expands</h3>
+              <p>The conservation initiative along the Yangtze River gets additional funding and tech support.</p>
+            </a>
+          </div>
+        </div>
+
+        <!-- Brazil News Items -->
+        <div class="news-item-container brazil">
+          <div class="news-item">
+            <a href="#">
+              <h3>Deforestation in Amazon shows slight decline</h3>
+              <p>New figures indicate a small reduction in deforestation activity in the Amazon rainforest.</p>
+            </a>
+          </div>
+        </div>
+        <div class="news-item-container brazil">
+          <div class="news-item">
+            <a href="#">
+              <h3>Brazil launches reforestation initiative</h3>
+              <p>The government announces a massive tree-planting campaign in degraded areas.</p>
+            </a>
+          </div>
+        </div>
+        <div class="news-item-container brazil">
+          <div class="news-item">
+            <a href="#">
+              <h3>Amazon tribes join climate protests</h3>
+              <p>Indigenous communities in Brazil raise awareness about environmental damage through peaceful protests.</p>
+            </a>
+          </div>
+        </div>
+        <div class="news-item-container brazil">
+          <div class="news-item">
+            <a href="#">
+              <h3>Brazil promotes sustainable agriculture</h3>
+              <p>Farmers in Brazil adopt new eco-friendly techniques to improve productivity and reduce emissions.</p>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2024 Environmental News - All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Function to filter news based on selected country
+    function filterNewsByCountry() {
+      const country = document.getElementById('country').value;
+      const newsItems = document.querySelectorAll('.news-item-container');
+      
+      newsItems.forEach(item => {
+        if (country === 'all' || item.classList.contains(country)) {
+          item.style.display = 'block';  // Show the news item
+        } else {
+          item.style.display = 'none';  // Hide the news item
+        }
+      });
+    }
+  </script>
+
+</body>
+</html>
